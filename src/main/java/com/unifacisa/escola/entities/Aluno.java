@@ -41,5 +41,4 @@ public class Aluno {
     )
     private List<Materia> materias = new ArrayList<>();
 
-
 }
