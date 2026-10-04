@@ -30,9 +30,8 @@ public class Aluno {
     @Column(nullable = false)
     private String endereco;
 
-    /*
     @OneToMany(mappedBy = "aluno")
-    private List<Materia> materias = new ArrayList<>();
+    private List<Professor> professores = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
@@ -41,6 +40,6 @@ public class Aluno {
             inverseJoinColumns = @JoinColumn(name="materia_id")
     )
     private List<Materia> materias = new ArrayList<>();
-    */
+
 
 }
