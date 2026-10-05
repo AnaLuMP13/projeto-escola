@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Definindo: Entidade, nome da tabela, Construtores, getters  e setters
 @Entity
 @Table(name = "professores")
@@ -24,4 +27,7 @@ public class Professor {
     private int cpf;
     private int telefone;
     private String endereco;
+
+    @OneToMany(mappedBy = "professor")
+    private List<Materia> materias = new ArrayList<>();
 }
