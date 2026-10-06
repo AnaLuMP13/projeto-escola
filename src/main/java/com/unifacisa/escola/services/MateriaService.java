@@ -47,7 +47,7 @@ public class MateriaService {
         materiaRepository.deleteById(idMateria);
     }
 
-    // Vinculo entre materia e aluno
+    // Função para vincular um aluno a uma materia
     @Transactional
     public void vincularAluno(Integer idMateria, Integer alunoId) {
         Materia materia = materiaRepository.findById(idMateria).orElseThrow(() -> new RuntimeException("Matéria não encontrada."));
