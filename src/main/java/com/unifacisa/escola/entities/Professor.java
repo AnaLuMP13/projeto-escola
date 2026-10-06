@@ -28,6 +28,7 @@ public class Professor {
     private int telefone;
     private String endereco;
 
+    // Um professor pode estar associado a várias matérias
     @OneToMany(mappedBy = "professor")
     private List<Materia> materias = new ArrayList<>();
 }

@@ -24,6 +24,7 @@ public class Materia {
     private String descricao;
     private int cargaHoraria;
 
+    // Muitas matérias podem estar associadas a um único professor
     @ManyToOne
     @JoinColumn(name = "professor_id")
     @JsonIgnore
