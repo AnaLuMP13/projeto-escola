@@ -30,7 +30,12 @@ public class Aluno {
     @Column(nullable = false)
     private String endereco;
 
-    @OneToMany(mappedBy = "aluno")
+    @ManyToMany
+    @JoinTable(
+            name = "aluno_professor",
+            joinColumns = @JoinColumn(name="aluno_id"),
+            inverseJoinColumns = @JoinColumn(name="professor_id")
+    )
     private List<Professor> professores = new ArrayList<>();
 
     @ManyToMany
