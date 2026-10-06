@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "materias")
 @AllArgsConstructor
@@ -24,9 +27,8 @@ public class Materia {
     private String descricao;
     private int cargaHoraria;
 
-    // Muitas matérias podem estar associadas a um único professor
-    @ManyToOne
-    @JoinColumn(name = "professor_id", insertable = false, updatable = false) // Transforma a coluna em apenas leitura
+    // Relacionamento muitos para muitos entre materia e aluno
+    @ManyToMany(mappedBy = "materias")
     @JsonIgnore
-    private Professor professor;
+    private List<Aluno> alunos = new ArrayList<>();
 }
