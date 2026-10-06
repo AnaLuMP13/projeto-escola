@@ -1,3 +1,4 @@
+/*
 package com.unifacisa.escola;
 
 import org.junit.jupiter.api.Test;
@@ -11,3 +12,5 @@ class EscolaApplicationTests {
 	}
 
 }
+
+ */

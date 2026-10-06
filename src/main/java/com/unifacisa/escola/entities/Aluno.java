@@ -1,5 +1,6 @@
 package com.unifacisa.escola.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "alunos")
@@ -24,20 +27,13 @@ public class Aluno {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 11)
     private int telefone;
 
     @Column(nullable = false)
     private String endereco;
 
-    @ManyToMany
-    @JoinTable(
-            name = "aluno_professor",
-            joinColumns = @JoinColumn(name="aluno_id"),
-            inverseJoinColumns = @JoinColumn(name="professor_id")
-    )
-    private List<Professor> professores = new ArrayList<>();
-
+    // Relacionamento Many to Many entre aluno e materia
     @ManyToMany
     @JoinTable(
             name = "aluno_materia",
@@ -45,5 +41,14 @@ public class Aluno {
             inverseJoinColumns = @JoinColumn(name="materia_id")
     )
     private List<Materia> materias = new ArrayList<>();
+
+    // Relacionamento Many to Many entre professor e aluno
+    @ManyToMany(mappedBy = "alunos") // Atributo "Alunos" da classe professor "coordena" o relacionamento
+    @JsonIgnore
+    private Set<Professor> professores = new HashSet<>();
+
+    @OneToOne(mappedBy = "aluno", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Certificado certificado;
 
 }

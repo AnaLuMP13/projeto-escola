@@ -33,4 +33,12 @@ public class AlunoContoller {
 
         return "Aluno excluído com sucesso.";
     }
+
+    // Mapeia a função de vincular o aluno a materia
+    @PostMapping("/{alunoId}/materias/{idMateria}")
+    public String vincularAluno(@PathVariable Integer alunoId, @PathVariable Integer idMateria) {
+        alunoService.vincularMateria(alunoId, idMateria);
+
+        return "Aluno vinculado à matéria com sucesso.";
+    }
 }
