@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 // Definindo: Classe controller e rota
+@RestController
 @RequestMapping("/professores")
 public class ProfessorController {
 
@@ -39,5 +40,20 @@ public class ProfessorController {
         professorService.professorDelete(matricula);
 
         return "Professor excluído com sucesso";
+    }
+
+    // Mapeando funcionalidade professor - aluno
+    @PostMapping("/{matricula}/alunos/{alunoId}")
+    public String vincularAluno(@PathVariable Integer matricula, @PathVariable Integer alunoId) {
+        professorService.vincularAluno(matricula, alunoId);
+        return "Aluno vinculado ao professor com sucesso.";
+    }
+
+    // Mapeamento da funcionalidade professor - materia
+    @PostMapping("/{matricula}/materias/{idMateria}")
+    public String vincularMateria(@PathVariable Integer matricula, @PathVariable Integer idMateria) {
+        professorService.vincularMateria(matricula, idMateria);
+
+        return "Professor cadastrado na matéria com sucesso";
     }
 }

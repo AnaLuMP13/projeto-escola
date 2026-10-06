@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 // Definindo: Entidade, nome da tabela, Construtores, getters  e setters
 @Entity
@@ -28,7 +30,18 @@ public class Professor {
     private int telefone;
     private String endereco;
 
+
+    // Relacionamento "Muitos para muitos": Professores e alunos
+    @ManyToMany
+    @JoinTable(
+            name = "professor_aluno", // Nome da tabela intermediária
+            joinColumns = @JoinColumn(name = "professor_id"), // Coluna da classe Professor
+            inverseJoinColumns = @JoinColumn(name = "aluno_id") // Coluna da classe Aluno
+    )
+    private Set<Aluno> alunos = new HashSet<>();
+
     // Um professor pode estar associado a várias matérias
-    @OneToMany(mappedBy = "professor")
+    @OneToMany
+    @JoinColumn(name = "professor_id") // coluna criada na tabela materias
     private List<Materia> materias = new ArrayList<>();
 }

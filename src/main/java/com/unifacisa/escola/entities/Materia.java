@@ -26,7 +26,7 @@ public class Materia {
 
     // Muitas matérias podem estar associadas a um único professor
     @ManyToOne
-    @JoinColumn(name = "professor_id")
+    @JoinColumn(name = "professor_id", insertable = false, updatable = false) // Transforma a coluna em apenas leitura
     @JsonIgnore
     private Professor professor;
 }

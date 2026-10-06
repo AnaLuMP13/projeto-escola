@@ -30,7 +30,6 @@ public class MateriaService {
         materiaExistente.setNome(materia.getNome());
         materiaExistente.setDescricao(materia.getDescricao());
         materiaExistente.setCargaHoraria(materia.getCargaHoraria());
-        materiaExistente.setProfessor(materia.getProfessor());
 
         return materiaRepository.save(materiaExistente);
     }
